@@ -1,0 +1,30 @@
+﻿<Window x:Class="SupportServiceApp.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Support Service" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+            <Button Content="Добавить" Click="AddTicket_Click" Width="80" Margin="0,0,10,0"/>
+            <Button Content="Редактировать" Click="EditTicket_Click" Width="80" Margin="0,0,10,0"/>
+            <Button Content="Удалить" Click="DeleteTicket_Click" Width="80"/>
+        </StackPanel>
+
+        <DataGrid x:Name="TicketsGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                <DataGridTextColumn Header="Заголовок" Binding="{Binding Title}" Width="*"/>
+                <DataGridTextColumn Header="Клиент" Binding="{Binding Client.Name}" Width="150"/>
+                <DataGridTextColumn Header="Оборудование" Binding="{Binding Equipment.Name}" Width="150"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding Category.Name}" Width="150"/>
+                <DataGridCheckBoxColumn Header="Актуальна" Binding="{Binding IsActual}" Width="80"/>
+                <DataGridTextColumn Header="Дата создания" Binding="{Binding CreatedDate}" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
