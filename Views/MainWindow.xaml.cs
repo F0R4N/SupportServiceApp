@@ -64,5 +64,10 @@ namespace SupportServiceApp.Views
             else
                 MessageBox.Show("Выберите заявку для удаления.");
         }
+        private void AdminButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminWindow adminWindow = new AdminWindow();
+            adminWindow.ShowDialog();
+        }
     }
 }

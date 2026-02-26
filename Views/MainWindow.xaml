@@ -10,20 +10,28 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
             <Button Content="Добавить" Click="AddTicket_Click" Width="80" Margin="0,0,10,0"/>
-            <Button Content="Редактировать" Click="EditTicket_Click" Width="80" Margin="0,0,10,0"/>
-            <Button Content="Удалить" Click="DeleteTicket_Click" Width="80"/>
+            <Button Content="Редактировать" Click="EditTicket_Click" Width="90" Margin="0,0,10,0"/>
+            <Button Content="Удалить" Click="DeleteTicket_Click" Width="80" Margin="0,0,10,0"/>
+            <Button Content="Администрирование" Width="150" Height="30" Margin="0,0,10,0" Click="AdminButton_Click"/>
         </StackPanel>
 
         <DataGrid x:Name="TicketsGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
                   SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
-                <DataGridTextColumn Header="Заголовок" Binding="{Binding Title}" Width="*"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="30"/>
+                <DataGridTextColumn Header="Заголовок" Binding="{Binding Title}" Width="90"/>
                 <DataGridTextColumn Header="Клиент" Binding="{Binding Client.Name}" Width="150"/>
-                <DataGridTextColumn Header="Оборудование" Binding="{Binding Equipment.Name}" Width="150"/>
+                <DataGridTextColumn Header="Оборудование" Binding="{Binding Equipment.Name}" Width="120"/>
                 <DataGridTextColumn Header="Категория" Binding="{Binding Category.Name}" Width="150"/>
-                <DataGridCheckBoxColumn Header="Актуальна" Binding="{Binding IsActual}" Width="80"/>
-                <DataGridTextColumn Header="Дата создания" Binding="{Binding CreatedDate}" Width="150"/>
+                <DataGridTemplateColumn Header="Актуальна" Width="70" IsReadOnly="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsActual, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Дата создания" Binding="{Binding CreatedDate}" Width="130"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
