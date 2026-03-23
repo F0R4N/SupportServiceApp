@@ -1,7 +1,8 @@
 ﻿<Window x:Class="SupportServiceApp.Views.AddEditTicketWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Заявка" Height="350" Width="400">
+        Title="Заявка" Height="290" Width="400"
+        WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 
 namespace SupportServiceApp.Views
@@ -24,8 +25,16 @@ namespace SupportServiceApp.Views
             using (var db = new AppDbContext())
             {
                 ClientCombo.ItemsSource = db.Clients.ToList();
+                ClientCombo.DisplayMemberPath = "Name";
+                ClientCombo.SelectedValuePath = "Id";
+
                 EquipmentCombo.ItemsSource = db.Equipment.ToList();
+                EquipmentCombo.DisplayMemberPath = "Name";
+                EquipmentCombo.SelectedValuePath = "Id";
+
                 CategoryCombo.ItemsSource = db.Categories.ToList();
+                CategoryCombo.DisplayMemberPath = "Name";
+                CategoryCombo.SelectedValuePath = "Id";
             }
         }
 
@@ -42,9 +51,11 @@ namespace SupportServiceApp.Views
                 {
                     TitleBox.Text = ticket.Title ?? "";
                     DescriptionBox.Text = ticket.Description ?? "";
-                    ClientCombo.SelectedItem = ticket.Client;
-                    EquipmentCombo.SelectedItem = ticket.Equipment;
-                    CategoryCombo.SelectedItem = ticket.Category;
+
+                    // Автовыбор клиента, оборудования и категории по Id
+                    ClientCombo.SelectedValue = ticket.ClientId;
+                    EquipmentCombo.SelectedValue = ticket.EquipmentId;
+                    CategoryCombo.SelectedValue = ticket.CategoryId;
                 }
             }
         }
@@ -61,7 +72,7 @@ namespace SupportServiceApp.Views
             {
                 ticket = new Ticket
                 {
-                    CreatedDate = DateTime.UtcNow, // <-- UTC
+                    CreatedDate = DateTime.UtcNow,
                     IsActual = true
                 };
                 db.Tickets.Add(ticket);

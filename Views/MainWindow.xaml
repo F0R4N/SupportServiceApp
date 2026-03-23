@@ -1,7 +1,8 @@
 ﻿<Window x:Class="SupportServiceApp.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Support Service" Height="450" Width="800">
+        Title="Support Service" Height="500" Width="930"
+        WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,14 +14,16 @@
             <Button Content="Редактировать" Click="EditTicket_Click" Width="90" Margin="0,0,10,0"/>
             <Button Content="Удалить" Click="DeleteTicket_Click" Width="80" Margin="0,0,10,0"/>
             <Button Content="Администрирование" Width="150" Height="30" Margin="0,0,10,0" Click="AdminButton_Click"/>
+            <TextBox x:Name="SearchBox" Width="200" Margin="5" TextChanged="SearchBox_TextChanged" Text="Поиск..." />
         </StackPanel>
 
         <DataGrid x:Name="TicketsGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
                   SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="30"/>
+                <DataGridTextColumn Header="Дата создания" Binding="{Binding CreatedDate}" Width="130"/>
                 <DataGridTextColumn Header="Заголовок" Binding="{Binding Title}" Width="90"/>
                 <DataGridTextColumn Header="Клиент" Binding="{Binding Client.Name}" Width="150"/>
+                <DataGridTextColumn Header="Описание проблемы" Binding="{Binding Description}" Width="150"/>
                 <DataGridTextColumn Header="Оборудование" Binding="{Binding Equipment.Name}" Width="120"/>
                 <DataGridTextColumn Header="Категория" Binding="{Binding Category.Name}" Width="150"/>
                 <DataGridTemplateColumn Header="Актуальна" Width="70" IsReadOnly="False">
@@ -31,7 +34,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Дата создания" Binding="{Binding CreatedDate}" Width="130"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="30"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
