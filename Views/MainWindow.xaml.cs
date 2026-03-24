@@ -39,7 +39,6 @@ namespace SupportServiceApp.Views
 
             var searchText = SearchBox.Text.ToLower();
 
-            // если поле пустое — показываем всё
             if (string.IsNullOrWhiteSpace(searchText))
             {
                 TicketsGrid.ItemsSource = _allTickets;
@@ -127,7 +126,6 @@ namespace SupportServiceApp.Views
             {
                 var worksheet = workbook.Worksheets.Add("Заявки");
 
-                // Новый порядок колонок
                 worksheet.Cell(1, 1).Value = "Дата";
                 worksheet.Cell(1, 2).Value = "Заголовок";
                 worksheet.Cell(1, 3).Value = "Клиент";
@@ -138,7 +136,6 @@ namespace SupportServiceApp.Views
 
                 int row = 2;
 
-                // СОРТИРОВКА: от старых к новым
                 foreach (var t in currentData.OrderBy(t => t.CreatedDate))
                 {
                     worksheet.Cell(row, 1).Value = t.CreatedDate;
@@ -152,7 +149,6 @@ namespace SupportServiceApp.Views
                     row++;
                 }
 
-                // Формат даты (нормальный вид)
                 worksheet.Column(1).Style.DateFormat.Format = "dd.MM.yyyy HH:mm";
 
                 worksheet.Columns().AdjustToContents();
